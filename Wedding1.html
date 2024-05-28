@@ -1,0 +1,204 @@
+<HTML>
+<HEAD>
+<TITLE>Wedding</TITLE>
+</HEAD>
+</HTML> <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wedding</title>
+<style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f8f8f8;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        header {
+            text-align: center;
+            padding: 50px 0;
+            background-image: url('https://i.pinimg.com/564x/08/1a/e3/081ae35541b61b7839bba6b994d68c5c.jpg'); /* URL фона */
+            background-size: cover;
+            background-position: center;
+            color: white;
+        }
+        header h1 {
+            font-size: 3em;
+            margin: 0;
+        }
+        .language-selector {
+            text-align: right;
+            margin: 20px 0;
+        }
+        .language-selector button {
+            background-color: #6ab7a8;
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            margin-left: 5px;
+        }
+        .language-selector button:hover {
+            background-color: #5aa897;
+        }
+        .section {
+            background: white;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            border-radius: 10px;
+        }
+        h2 {
+            font-size: 2em;
+            margin-bottom: 20px;
+            text-align: center;
+            color: #666;
+        }
+        p {
+            line-height: 1.6;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #666;
+        }
+        input, textarea, button {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+        button {
+            background-color: #6ab7a8;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #5aa897;
+        }
+        .gallery-form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .dress-code-images img {
+            max-width: 100px;
+            margin: 5px;
+            border-radius: 5px;
+        }
+</style>
+</head>
+<body>
+<header>
+<h1 id="welcome">Welcome to Our Wedding</h1>
+</header>
+<div class="container">
+<div class="language-selector">
+<button onclick="setLanguage('ru')">Русский</button>
+<button onclick="setLanguage('de')">Deutsch</button>
+</div>
+<div class="section" id="details">
+<h2 id="details-heading">Details</h2>
+<p id="dates"><strong>Dates:</strong> October 4-6, 2024</p>
+<p id="time"><strong>Time:</strong> 5:00 PM on October 4</p>
+<p id="place"><strong>Place:</strong> La Cactus Butik Otel, Antalya</p>
+<p><a id="booking-link" href="https://www.booking.com/hotel/tr/la-cactus-butik-otel-antalya12.de.html?aid=898224&app_hotel_id=7481767&checkin=2024-10-03&checkout=2024-10-04&from_sn=ios&group_adults=2&group_children=0&label=hotel_details-azEnQRG%401714585260&no_rooms=1&req_adults=2&req_children=0&room1=A%2CA%2C">Book your stay here</a></p>
+<p id="accommodation"><strong>Accommodation:</strong> Provided by the hosts for 2 nights</p>
+<p id="dress-code"><strong>Dress Code:</strong> Black, white, pastel shades</p>
+<div class="dress-code-images">
+<img src="https://i.pinimg.com/736x/c2/1b/76/c21b76714b71e93df7148c318330f6b5.jpg" alt="Dress Code Example 1">
+<img src="https://i.pinimg.com/474x/2d/64/57/2d6457b7c8ab63e34ab2d0e45ecbe1ee.jpg" alt="Dress Code Example 2">
+<img src="https://i.pinimg.com/474x/6b/30/c4/6b30c43cbdeb4bfb62f0e45920ef84c9.jpg" alt="Dress Code Example 3">
+</div>
+</div>
+<div class="section" id="rsvp">
+<h2 id="rsvp-heading">RSVP</h2>
+<form id="rsvpForm">
+<div class="form-group">
+<label for="name" id="label-name">Name</label>
+<input type="text" id="name" name="name" required>
+</div>
+<div class="form-group">
+<label for="email" id="label-email">Email</label>
+<input type="email" id="email" name="email" required>
+</div>
+<div class="form-group">
+<label for="allergies" id="label-allergies">Food Allergies</label>
+<textarea id="allergies" name="allergies"></textarea>
+</div>
+<button type="submit" id="submit-btn">Submit</button>
+</form>
+</div>
+<div class="section" id="gallery">
+<h2 id="gallery-heading">Gallery</h2>
+<form id="uploadForm" class="gallery-form" enctype="multipart/form-data">
+<div class="form-group">
+<label for="photo" id="label-photo">Upload Photo/Video</label>
+<input type="file" id="photo" name="photo" accept="image/*,video/*" required>
+</div>
+<button type="submit" id="upload-btn">Upload</button>
+</form>
+</div>
+</div>
+<script>
+        const translations = {
+            ru: {
+                welcome: "Добро пожаловать на нашу свадьбу",
+                detailsHeading: "Детали",
+                dates: "<strong>Даты:</strong> 4-6 октября 2024 года",
+                time: "<strong>Время:</strong> 17:00, 4 октября",
+                place: "<strong>Место:</strong> La Cactus Butik Otel, Анталья",
+                bookingLink: "Забронируйте ваше пребывание здесь",
+                accommodation: "<strong>Проживание:</strong> За счет приглашающей стороны (2 ночи)",
+                dressCode: "<strong>Дресс-код:</strong> Черный, белый, пастельные оттенки",
+                rsvpHeading: "RSVP",
+                nameLabel: "Имя",
+                emailLabel: "Эл. почта",
+                allergiesLabel: "Пищевые аллергии",
+                submitBtn: "Отправить",
+                galleryHeading: "Галерея",
+                photoLabel: "Загрузить фото/видео",
+                uploadBtn: "Загрузить"
+            },
+            de: {
+                welcome: "Willkommen zu unserer Hochzeit",
+                detailsHeading: "Details",
+                dates: "<strong>Termine:</strong> 4.-6. Oktober 2024",
+                time: "<strong>Zeit:</strong> 17:00 Uhr am 4. Oktober",
+                place: "<strong>Ort:</strong> La Cactus Butik Otel, Antalya",
+                bookingLink: "Buchen Sie Ihren Aufenthalt hier",
+                accommodation: "<strong>Unterkunft:</strong> Vom Gastgeber für 2 Nächte bereitgestellt",
+                dressCode: "<strong>Kleiderordnung:</strong> Schwarz, weiß, pastellfarben",
+                rsvpHeading: "RSVP",
+                nameLabel: "Name",
+                emailLabel: "E-Mail",
+                allergiesLabel: "Lebensmittelallergien",
+                submitBtn: "Absenden",
+                galleryHeading: "Galerie",
+                photoLabel: "Foto/Video hochladen",
+                uploadBtn: "Hochladen"
+            }
+        };
+
+        function setLanguage(lang) {
+            document.getElementById('welcome').innerText = translations[lang].welcome;
+            document.getElementById('details-heading').innerText = translations[lang].detailsHeading;
+            document.getElementById('dates').innerHTML = translations[lang].dates;
+            document.getElementById('time').innerHTML = translations[lang].time;
+            document.getElementById('place').innerHTML = translations[lang].place;
+            document.getElementById('booking-link').innerText = translations[lang].bookingLink;
+            document.getElementById('accommodation').innerHTML = translations[lang].accommodation;
+            document.getElementById('dress-code').innerHTML = translations[lang].dressCode;
+            document.getElementById('rsvp-heading').innerText = translations[lang
